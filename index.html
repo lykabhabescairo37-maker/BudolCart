@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budol Calculator - Shopee Edition</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="header">
+      <span class="header-tag">Shopee Edition</span>
+      <h1>Budol Calculator</h1>
+      <p>Track your checkout damage cleanly & simply</p>
+    </header>
+
+    <!-- Summary & Budget Card -->
+    <section class="card">
+      <div class="totals-grid">
+        <div class="total-box">
+          <div class="label">Subtotal</div>
+          <div class="amount" id="totalSubtotal">₱0.00</div>
+        </div>
+        <div class="total-box">
+          <div class="label">Total Shipping</div>
+          <div class="amount" id="totalShipping">₱0.00</div>
+        </div>
+        <div class="total-box">
+          <div class="label">Paid</div>
+          <div class="amount" id="totalPaid">₱0.00</div>
+        </div>
+        <div class="total-box">
+          <div class="label">To Pay</div>
+          <div class="amount" id="totalToPay">₱0.00</div>
+        </div>
+        <div class="total-box grand">
+          <div class="label">Grand Total</div>
+          <div class="amount" id="grandTotal">₱0.00</div>
+        </div>
+      </div>
+
+      <!-- Dynamic Budget Section -->
+      <div class="budget-section">
+        <div class="budget-header">
+          <label for="budgetInput">Target Budget</label>
+          <div class="budget-input-wrapper">
+            <span>₱</span>
+            <input type="number" id="budgetInput" value="500" min="0" step="10">
+          </div>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="budgetProgressBar"></div>
+        </div>
+        <div class="budget-warning" id="budgetWarning"></div>
+      </div>
+    </section>
+
+    <!-- Add Item Form Card -->
+    <section class="card">
+      <div class="form-title">Add New Budol</div>
+      <form id="addBudolForm">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" placeholder="e.g. Phone Case" required>
+          </div>
+          <div class="form-group">
+            <label for="itemPrice">Price (PHP)</label>
+            <input type="number" id="itemPrice" placeholder="0.00" min="0" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label for="itemQty">Quantity</label>
+            <input type="number" id="itemQty" value="1" min="1" required>
+          </div>
+          <div class="form-group">
+            <label for="itemShipping">Shipping Fee (PHP)</label>
+            <input type="number" id="itemShipping" placeholder="0.00" min="0" step="0.01" value="0">
+          </div>
+          <div class="form-group">
+            <label for="itemStatus">Status</label>
+            <select id="itemStatus">
+              <option value="to-pay">To Pay</option>
+              <option value="paid">Paid</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-add">Add to List</button>
+      </form>
+    </section>
+
+    <!-- Filter & List Header -->
+    <div class="filter-container">
+      <div class="filter-tabs">
+        <button type="button" class="filter-tab active" data-filter="all">All</button>
+        <button type="button" class="filter-tab" data-filter="to-pay">To Pay</button>
+        <button type="button" class="filter-tab" data-filter="paid">Paid</button>
+      </div>
+      <button type="button" class="reset-link" id="resetDataBtn">Reset to defaults</button>
+    </div>
+
+    <!-- Budol List -->
+    <section class="card" aria-labelledby="itemListTitle">
+      <h2 class="form-title" id="itemListTitle">Your Budol List</h2>
+      <div class="item-list" id="itemList" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
